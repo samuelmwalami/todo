@@ -8,6 +8,8 @@ class TaskStatus(Enum):
     ACTIVE = 'active'
     INACTIVE = 'inactive'
     COMPLETED = 'completed'
+    
+    
 
 # Create your views here.
 
@@ -26,29 +28,35 @@ def create_task(request):
         new_task.save()
         return redirect('create')
 
-
+def delete_task(request, taskid):
+    task= Task.objects.get(id=taskid)
+    task.delete()
+    return redirect('inactive')
 
 
 def inactive_task_view(request):
     status= TaskStatus.INACTIVE.value
     tasks = Task.objects.filter(task_status=status)
     print(tasks,status)
-    context = {"tasks" : tasks}
+    context = {"tasks" : tasks,
+               "status" : status}
     return render(request, 'todo/view.html', context)
 
 def active_task_view(request):
     status= TaskStatus.ACTIVE.value
     tasks = Task.objects.filter(task_status=status)
-    context = {"tasks" : tasks}
+    context = {"tasks" : tasks,
+               "status" : status}
     return render(request, 'todo/view.html', context)
 
 def completed_task_view(request):
     status= TaskStatus.COMPLETED
     completed_tasks = Task.objects.filter(task_status=status)
-    context = {"tasks" : completed_tasks}
+    context = {"tasks" : completed_tasks,
+               "status" : status}
     return render(request, 'todo/view.html',context)
 
-def task_edit(request, taskid):
+def edit_task(request, taskid):
     if request.method == 'GET':
         task = Task.objects.filter(id=taskid)
         context ={
@@ -57,13 +65,21 @@ def task_edit(request, taskid):
         print(task)
         return render(request, 'todo/editForm.html', context)
     elif request.method == 'POST':
-        task = Task.object.get(id=taskid)
-        print(task)
-        pass
+        task_name = request.POST['taskname']
+        start_time = datetime.strptime(request.POST['starttime'],'%Y-%m-%dT%H:%M')
+        completion_time = datetime.strptime(request.POST['completiontime'],'%Y-%m-%dT%H:%M')
+        if completion_time > start_time:
+            return redirect('edit')
+        #task_status = TaskStatus.INACTIVE.value
+        
+        task = Task.objects.get(id=taskid)
+        task.task_name = task_name
+        task.start_time = start_time
+        task.completion_time = completion_time
+        task.save()
+        return redirect('inactive')
 
-def task_edit_submit(request, taskid):
-    context={}
-    return render(request, 'todo/form.html', context)
+
  
 def home(request):
     tasks = Task.objects.all()

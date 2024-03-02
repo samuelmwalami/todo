@@ -1,13 +1,27 @@
 {% extends 'base.html' %} {% block content %}
 <div class="tasks-container">
+  <ul class="nav">
+    <li><a href="{% url 'inactive' %}">Inactive Tasks</a></li>
+    <li><a href="{% url 'active' %}">Active Tasks</a></li>
+    <li><a href="{% url 'inactive' %}">Completed Tasks</a></li>
+  </ul>
   {%for task in tasks %}
   <div class="task-container">
-    <p>{{ task.task_name }}</p>
-    <p><span>Created at:</span>{{ task.created_at }}</p>
-    <p><span>Edited at:</span>{{ task.modified_at }}</p>
-    <p>Scheduled for {{ task.start_time}} to {{ task.completion_time}}</p>
-    <a href="edit/{{task.id}}">Edit</a>
-    <a href="#">Delete</a>
+    <div class="essential">
+      <div  class="task-name">
+        <h3>{{ task.task_name }}</h3>
+      </div>
+      <div class="buttons" >
+        <a class="button edit-button" href="edit/{{task.id}}">Edit</a>
+        <a class="button delete-button" href="#">Delete</a>
+      </div>
+    </div>
+
+    <div class="metadata">
+      <p><bold>Created at</bold> <i>{{ task.created_at }}</i></p>
+      <p><bold>Edited at</bold> <i>{{ task.modified_at }}</i></p>
+      <p><bold>Task to start from</bold> <i>{{ task.start_time }}</i> <bold>to</bold> <i>{{ task.completion_time }}</i></p>
+    </div>
   </div>
   {% endfor %}
 </div>

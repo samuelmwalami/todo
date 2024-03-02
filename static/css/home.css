@@ -1,4 +1,4 @@
-/*:root {
+:root {
   --primary-dark: #03001c;
   --secondary-dark: #301e67;
   --accent-dark: #5b8fb9;
@@ -10,24 +10,137 @@
   --accent-light-2: #e6fffd;
 }
 
-*/
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  background: var(--primary-dark);
+  color: #fff;
+}
 .tasks-container{
-  border: 2px solid #000;
+  max-width: 70%;
+  background: var(--secondary-dark);
   border-radius: 10px;
   margin: 2rem;
+  margin-left: 15%;
+  padding: 1rem;
+  box-shadow: 5px 5px 10px 10px var(--secondary-dark);
 }
 
 .task-container{
+  background: var(--secondary-dark);
   border: 2px solid #000;
   margin: 1rem;
+  padding-left: 0.5rem;
   border-radius: 5px;
 }
 
-h4{
+.essential{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.task-name{
+  flex-basis: 80%;
+}
+.buttons{
+ /* background-color: yellow;*/
+  flex-basis: 20%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button{
+  text-decoration: none;
+  font-weight: 500;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
+  background: var(--primary-dark);
+  transition: 0.1s ease-in-out;
+}
+.edit-button{
+  color: var(--accent-dark);
+}
+.edit-button:hover{
+  background: var(--accent-dark);
+  color: var(--primary-dark);
+}
+.delete-button{
+  color: rgb(119, 23, 23);
+}
+.delete-button:hover{
+  background: rgb(119, 23, 23);
+  color: var(--primary-dark);
+}
+.button:hover{
+  transform: translateY(-3px);
+}
+.metadata{
+  display:none;
+}
+
+.essentials:hover .metadata{
+  display: block;
+}
+
+h1{
   font-weight: 900;
+  text-align: center;
+  line-height: 1.5 rem;
+  letter-spacing: 0.5rem;
+  text-shadow: 2px 2px 3px #020202;
+  font-size: 4rem;
+}
+
+.nav{
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav li{
+  padding-right: 1rem;
+}
+
+.nav li a{
+  text-decoration: none;
+  color: var(--accent-dark);
+}
+
+form{
+  background-color: var(--secondary-dark);
+  max-width: 40%;
+  margin: 10px;
+  margin-left: 30%;
+  padding: 2rem;
+  padding-left: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  border-radius: 10px;
+}
+
+form input{
+  width: 80%;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  color: #000;
+  border-radius: 5px;
+}
+label{
+  font-size: 1.3rem;
+  color: var(--accent-dark);
+}
+
+.submit{
+  color: var(--accent-dark-2);
 }
