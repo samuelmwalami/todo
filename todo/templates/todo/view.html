@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<div class="tasks-container">
+  {%for task in tasks %}
+  <div class="task-container">
+    <p>{{ task.task_name }}</p>
+    <p><span>Created at:</span>{{ task.created_at }}</p>
+    <p><span>Edited at:</span>{{ task.modified_at }}</p>
+    <p>Scheduled for {{ task.start_time}} to {{ task.completion_time}}</p>
+    <a href="edit/{{task.id}}">Edit</a>
+    <a href="#">Delete</a>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

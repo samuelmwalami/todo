@@ -1,0 +1,25 @@
+{% extends 'base.html'%} 
+{% block content %}
+<form action="/submit" method="POST">
+  {% csrf_token %}
+  <input type="text" name="taskname" placeholder="Add Task" />
+  <button type="submit">Add Task</button>
+</form>
+<div class="tasks">
+  <h1>My tasks</h1>
+  {% for x in tasks %}
+  <div class="task-container">
+    <form action="edit/{{x.id}}"></form>
+
+    <input type="text" name="update" value="{{x.task_name}}" disabled />
+
+    <div class="delete-container">
+      <label for="delete{{x.id}}">Delete</label>
+      <input class="d" type="checkbox" name="delete" id="delete{{x.id}}" />
+    </div>
+    <p><b>Created at:</b> {{ x.created_at }}</p>
+    <p><small>{{x.id}}</small></p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

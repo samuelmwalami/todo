@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="create" method="POST">
+    {% csrf_token %}
+    <label for="taskname">Task Name</label>
+    <input type="text" name="taskname" id="taskname">
+
+    <label for="starttime">Task starts at</label>
+    <input type="datetime-local" name="starttime" id="starttime">
+
+    <label for="completion_time">Task ends at</label>
+    <input type="datetime-local" name="completiontime" id="completiontime">
+    
+    <button type="submit">Create task</button>
+</form>
+{% endblock %}

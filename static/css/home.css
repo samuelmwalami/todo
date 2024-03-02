@@ -1,0 +1,33 @@
+/*:root {
+  --primary-dark: #03001c;
+  --secondary-dark: #301e67;
+  --accent-dark: #5b8fb9;
+  --accent-dark-2: #b6eada;
+
+  --primary-light: #b799ff;
+  --secondary-light: #acbcff;
+  --accent-light: #aee2ff;
+  --accent-light-2: #e6fffd;
+}
+
+*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.tasks-container{
+  border: 2px solid #000;
+  border-radius: 10px;
+  margin: 2rem;
+}
+
+.task-container{
+  border: 2px solid #000;
+  margin: 1rem;
+  border-radius: 5px;
+}
+
+h4{
+  font-weight: 900;
+}
